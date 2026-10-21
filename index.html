@@ -7,7 +7,7 @@
 <meta name="description" content="The official home of Samuel Cheesy Beans Baconator, the greatest fisherman to ever cast a line.">
 <meta property="og:title" content="Samuel Cheesy Beans Baconator">
 <meta property="og:description" content="The greatest fisherman to ever cast a line.">
-<meta property="og:image" content="samuel.jpg">
+<meta property="og:image" content="photos/shark.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎣</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,12 +104,6 @@
   }
   .photo-frame:hover { transform: rotate(0deg) scale(1.02); }
   .photo-frame img { display: block; width: 100%; height: auto; border-radius: 4px; border: 2px solid var(--line); }
-  .photo-frame .fallback {
-    display: none; aspect-ratio: 4 / 5; width: min(400px, 78vw); place-items: center;
-    background: linear-gradient(180deg, #7dd3e6, #0e7490); border-radius: 4px; border: 2px solid var(--line); font-size: 120px;
-  }
-  .photo-frame.missing img { display: none; }
-  .photo-frame.missing .fallback { display: grid; }
   .photo-frame figcaption { color: var(--line); font-weight: 800; font-size: 17px; margin-top: 12px; }
   .stamp {
     position: absolute; top: -18px; right: -22px; z-index: 2;
@@ -144,6 +138,15 @@
   .stat { background: var(--card); border: 3px solid var(--line); border-radius: 18px; padding: 20px; box-shadow: 5px 5px 0 var(--line); }
   .stat b { font-family: "Bowlby One", sans-serif; font-size: 32px; display: block; color: var(--water); }
   .stat span { font-weight: 600; color: var(--muted); font-size: 14px; }
+
+  /* ---------- trophy wall ---------- */
+  .trophies { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+  .trophy { margin: 0; background: #fff; padding: 10px 10px 14px; border: 3px solid var(--line); border-radius: 10px; box-shadow: 6px 6px 0 var(--line); transition: transform .15s; }
+  .trophy:nth-child(odd) { transform: rotate(-1.5deg); }
+  .trophy:nth-child(even) { transform: rotate(1.5deg); }
+  .trophy:hover { transform: rotate(0) scale(1.03); }
+  .trophy img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; border: 2px solid var(--line); }
+  .trophy figcaption { color: var(--line); font-weight: 800; text-align: center; margin-top: 10px; }
 
   /* ---------- skills ---------- */
   .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
@@ -218,14 +221,13 @@
     </h1>
     <figure class="photo-frame" id="photo" title="Click me!" role="button" tabindex="0" aria-label="Make it rain fish">
       <div class="stamp">CERTIFIED<br>FISH<br>WHISPERER</div>
-      <img src="samuel.jpg" alt="Samuel holding up a silver arowana he caught by the canal" width="1179" height="1867">
-      <div class="fallback" aria-hidden="true">🐟</div>
-      <figcaption>Exhibit A: one (1) silver arowana. It never stood a chance.</figcaption>
+      <img src="photos/shark.jpg" alt="Samuel on a boat holding up a bonnethead shark" width="1153" height="1400">
+      <figcaption>Exhibit A: one (1) shark. Yes, a SHARK.</figcaption>
     </figure>
     <p class="sub">The greatest fisherman to ever cast a line. Fish don't get caught by Samuel. They surrender.</p>
     <a class="btn" href="#game">Go Fishing With Samuel</a>
     &nbsp;
-    <a class="btn alt" href="#legend">Read the Legend</a>
+    <a class="btn alt" href="#trophies">See the Trophy Wall</a>
   </div>
 </header>
 
@@ -237,11 +239,11 @@
   <div class="wrap legend">
     <div>
       <h2 class="section-title">The Legend</h2>
-      <p>Most people go fishing. Samuel goes <b>catching</b>. Some anglers sit by the water for hours and go home with nothing but a sunburn. Samuel walks up to a canal, casts once, and pulls out a silver arowana like it owed him money.</p>
+      <p>Most people go fishing. Samuel goes <b>catching</b>. Some anglers sit by the water for hours and go home with nothing but a sunburn. Samuel walks up to a canal, casts once, and pulls out a tarpon like it owed him money. Lakes, canals, open ocean: it doesn't matter. Bass, peacock bass, tarpon, arowana, even sharks. If it swims, Samuel has probably caught it.</p>
       <p>The fish talk about him. Down in the canals, they tell stories about a guy with a fishing rod and a two-handed grip of pure steel. They call him the <b>Cheesy Beans Baconator</b>, and they swim the other way when they hear him coming. It doesn't help.</p>
     </div>
     <div class="stat-grid">
-      <div class="stat"><b>1</b><span>Silver arowana (and counting)</span></div>
+      <div class="stat"><b>1</b><span>Shark (and counting)</span></div>
       <div class="stat"><b>∞</b><span>Patience</span></div>
       <div class="stat"><b>0</b><span>Fish that got away</span></div>
       <div class="stat"><b>100%</b><span>Certified fish whisperer</span></div>
@@ -249,15 +251,28 @@
   </div>
 </section>
 
+<section id="trophies" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="section-title">The Trophy Wall</h2>
+    <p class="section-lead">A small sample of Samuel's catches. The full collection would crash the internet.</p>
+    <div class="trophies">
+      <figure class="trophy"><img src="photos/tarpon.jpg" alt="Samuel holding a silver tarpon under a stormy sky" loading="lazy" width="868" height="1400"><figcaption>🌩️ The Storm Tarpon</figcaption></figure>
+      <figure class="trophy"><img src="photos/peacock.jpg" alt="Samuel holding a colorful peacock bass" loading="lazy" width="1063" height="1400"><figcaption>🦚 Peacock Bass, Up Close</figcaption></figure>
+      <figure class="trophy"><img src="photos/smallmouth.jpg" alt="Young Samuel on a lake boat holding a smallmouth bass" loading="lazy" width="790" height="1400"><figcaption>🛶 Rookie Year Smallmouth</figcaption></figure>
+      <figure class="trophy"><img src="photos/peacock-sky.jpg" alt="Samuel holding a peacock bass up against the sky" loading="lazy" width="1006" height="1400"><figcaption>☁️ Peacock Bass, Sky High</figcaption></figure>
+    </div>
+  </div>
+</section>
+
 <section style="padding-top:0">
   <div class="wrap">
     <h2 class="section-title">Why Samuel Is The Greatest</h2>
-    <p class="section-lead">Experts studied the photo above for weeks. Here's what they found.</p>
+    <p class="section-lead">Experts studied the trophy wall for weeks. Here's what they found.</p>
     <div class="skills">
       <div class="skill"><div class="emoji">🎯</div><h3>The Cast</h3><p>Lands the lure exactly where the fish is hiding. Every time. Scientists can't explain it.</p></div>
       <div class="skill"><div class="emoji">🧘</div><h3>The Patience</h3><p>Can wait out any fish. The fish gets bored first. The fish always gets bored first.</p></div>
       <div class="skill"><div class="emoji">💪</div><h3>The Grip</h3><p>Two hands, full control, perfect photo angle. A textbook trophy hold.</p></div>
-      <div class="skill"><div class="emoji">🐉</div><h3>The Catch</h3><p>Arowanas are called dragon fish. Samuel caught a dragon. Let that sink in.</p></div>
+      <div class="skill"><div class="emoji">🐉</div><h3>The Catch</h3><p>He caught a shark. From a boat. While smiling. Let that sink in.</p></div>
     </div>
   </div>
 </section>
@@ -307,11 +322,7 @@
 </footer>
 
 <script>
-  // ---------- photo: fall back to a fish if samuel.jpg hasn't been added yet ----------
   const photo = document.getElementById("photo");
-  const photoImg = photo.querySelector("img");
-  photoImg.addEventListener("error", () => photo.classList.add("missing"));
-  if (photoImg.complete && photoImg.naturalWidth === 0) photo.classList.add("missing");
 
   // ---------- make it rain fish when the photo is clicked ----------
   const FISH = ["🐟", "🐠", "🎣", "🏆", "🐡"];
