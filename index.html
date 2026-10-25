@@ -200,8 +200,10 @@
   .meter .fill { height: 100%; width: 0; background: #7bc96f; }
   .meter .fill.danger { background: #ff5a4f; }
   .meter.tension::before, .meter.tension::after { content: ""; position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; opacity: .8; z-index: 1; }
-  .meter.tension::before { left: 25%; } .meter.tension::after { left: 80%; }
+  .meter.tension::before { left: var(--safe-low, 25%); } .meter.tension::after { left: var(--safe-high, 80%); }
   .meter .fill.reel { background: var(--sun); }
+  .meters.warn .meter.tension { border-color: var(--sun); animation: warnflash .25s linear infinite; }
+  @keyframes warnflash { 50% { background: #5a4a10; } }
   .fish-power { font-weight: 800; color: var(--sun); margin: 0 0 4px; }
   .scoreboard { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .scoreboard div { background: #0c2a35; border: 3px solid #000; border-radius: 14px; padding: 10px 14px; }
@@ -418,6 +420,6 @@
   window.rainFish = rainFish;
 </script>
 <!-- WHY: bump ?v= on every game.js change; GitHub Pages caches for 10 min and browsers keep the old file otherwise -->
-<script src="game.js?v=2"></script>
+<script src="game.js?v=15"></script>
 </body>
 </html>

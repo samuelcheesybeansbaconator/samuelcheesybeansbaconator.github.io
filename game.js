@@ -21,7 +21,7 @@
         { id: "largemouth", name: "Largemouth Bass",     emoji: "🐟", rarity: "common",    lb: [1, 6],      power: 3, weight: 26 },
         { id: "peacock",    name: "Peacock Bass",        emoji: "🐠", rarity: "uncommon",  lb: [1.5, 7],    power: 4, weight: 18 },
         { id: "snakehead",  name: "Bullseye Snakehead",  emoji: "🐍", rarity: "uncommon",  lb: [2, 10],     power: 5, weight: 10 },
-        { id: "arowana",    name: "Silver Arowana",      emoji: "🐉", rarity: "rare",      lb: [3, 9],      power: 5, weight: 6, jumps: true },
+        { id: "arowana",    name: "Silver Arowana",      emoji: "🐉", rarity: "rare",      lb: [3, 9],      power: 5, weight: 12, jumps: true },
         { id: "boot",       name: "Old Boot",            emoji: "👢", rarity: "junk",      lb: [1, 1],      power: 1, weight: 10 },
       ],
     },
@@ -31,8 +31,8 @@
         { id: "crappie",    name: "Crappie",             emoji: "🐟", rarity: "common",    lb: [0.5, 2],    power: 2, weight: 28 },
         { id: "smallmouth", name: "Smallmouth Bass",     emoji: "🐟", rarity: "common",    lb: [1, 6],      power: 4, weight: 26, jumps: true },
         { id: "walleye",    name: "Walleye",             emoji: "🐟", rarity: "uncommon",  lb: [2, 9],      power: 4, weight: 16 },
-        { id: "pike",       name: "Northern Pike",       emoji: "🐊", rarity: "rare",      lb: [5, 20],     power: 6, weight: 10 },
-        { id: "musky",      name: "Muskellunge",         emoji: "🐊", rarity: "epic",      lb: [15, 40],    power: 8, weight: 4 },
+        { id: "pike",       name: "Northern Pike",       emoji: "🐊", rarity: "rare",      lb: [5, 20],     power: 6, weight: 14 },
+        { id: "musky",      name: "Muskellunge",         emoji: "🐊", rarity: "epic",      lb: [15, 40],    power: 8, weight: 10 },
         { id: "tire",       name: "Tire",                emoji: "🛞", rarity: "junk",      lb: [8, 8],      power: 2, weight: 8 },
       ],
     },
@@ -42,9 +42,9 @@
         { id: "redfish",    name: "Redfish",             emoji: "🐟", rarity: "common",    lb: [3, 15],     power: 5, weight: 24 },
         { id: "snook",      name: "Snook",               emoji: "🐟", rarity: "uncommon",  lb: [4, 25],     power: 6, weight: 22 },
         { id: "bonnethead", name: "Bonnethead Shark",    emoji: "🦈", rarity: "uncommon",  lb: [5, 20],     power: 6, weight: 16 },
-        { id: "bonefish",   name: "Bonefish",            emoji: "🐟", rarity: "rare",      lb: [3, 12],     power: 7, weight: 12 },
-        { id: "permit",     name: "Permit",              emoji: "🐠", rarity: "rare",      lb: [10, 35],    power: 7, weight: 8 },
-        { id: "tarpon",     name: "Tarpon",              emoji: "🐟", rarity: "epic",      lb: [30, 150],   power: 9, weight: 7, jumps: true },
+        { id: "bonefish",   name: "Bonefish",            emoji: "🐟", rarity: "rare",      lb: [3, 12],     power: 7, weight: 14 },
+        { id: "permit",     name: "Permit",              emoji: "🐠", rarity: "rare",      lb: [10, 35],    power: 7, weight: 12 },
+        { id: "tarpon",     name: "Tarpon",              emoji: "🐟", rarity: "epic",      lb: [30, 150],   power: 9, weight: 16, jumps: true },
       ],
     },
     offshore: {
@@ -53,9 +53,9 @@
         { id: "mahi",       name: "Mahi-Mahi",           emoji: "🐠", rarity: "common",    lb: [8, 40],     power: 6, weight: 26, jumps: true },
         { id: "tuna",       name: "Blackfin Tuna",       emoji: "🐟", rarity: "uncommon",  lb: [10, 40],    power: 7, weight: 20 },
         { id: "blacktip",   name: "Blacktip Shark",      emoji: "🦈", rarity: "uncommon",  lb: [30, 120],   power: 7, weight: 18 },
-        { id: "sailfish",   name: "Sailfish",            emoji: "🐟", rarity: "epic",      lb: [40, 100],   power: 8, weight: 9, jumps: true },
-        { id: "goliath",    name: "Goliath Grouper",     emoji: "🐡", rarity: "legendary", lb: [150, 500],  power: 9, weight: 4 },
-        { id: "hammerhead", name: "Great Hammerhead",    emoji: "🦈", rarity: "legendary", lb: [200, 600],  power: 10, weight: 3 },
+        { id: "sailfish",   name: "Sailfish",            emoji: "🐟", rarity: "epic",      lb: [40, 100],   power: 8, weight: 16, jumps: true },
+        { id: "goliath",    name: "Goliath Grouper",     emoji: "🐡", rarity: "legendary", lb: [150, 500],  power: 9, weight: 12 },
+        { id: "hammerhead", name: "Great Hammerhead",    emoji: "🦈", rarity: "legendary", lb: [200, 600],  power: 9, weight: 10 },
       ],
     },
   };
@@ -75,16 +75,27 @@
   // WHY: 1.5-4.5s wait builds suspense without making people give up
   const MIN_WAIT_MS = 1500;
   const MAX_EXTRA_WAIT_MS = 3000;
-  // WHY: 900ms to set the hook is forgiving of phone tap latency but still needs attention
-  const HOOKSET_WINDOW_MS = 900;
+  // WHY: hooking is meant to be easy for EVERY fish; the challenge lives in the fight, not the tap.
+  // 2s covers phone tap latency and a glance away from the screen.
+  const HOOKSET_WINDOW_MS = 2000;
   // WHY: the safe tension band; below it the fish shakes loose, above it the line snaps.
-  // 25-80 leaves a wide middle so a new player can learn by feel within a few casts.
-  const SAFE_LOW = 25;
-  const SAFE_HIGH = 80;
+  // Weak fish get the wide 25-80 band so a new player learns by feel within a few casts;
+  // the strongest fish shrink it toward 37-63 so only precise timing lands them.
+  const SAFE_LOW_EASY = 25, SAFE_HIGH_EASY = 80;
+  const SAFE_LOW_HARD = 37, SAFE_HIGH_HARD = 63;
   const TENSION_UP_PER_S = 55;    // holding Reel raises tension about one safe band per second
   const TENSION_DOWN_PER_S = 40;  // letting go relaxes slightly slower than reeling, so taps feel smooth
   const REEL_PROGRESS_PER_S = 32; // play-tested: small fish land in ~5-7s, monsters in ~20s
-  const SLACK_LIMIT_S = 1.6;      // WHY: this long below the safe band and the hook pulls free; short enough to punish ignoring the fish
+  const SLACK_LIMIT_EASY_S = 1.6; // WHY: this long below the safe band and the hook pulls free; short enough to punish ignoring the fish
+  const SLACK_LIMIT_HARD_S = 0.8; // strong fish throw the hook in half the time, so you can't idle on them
+
+  // WHY: power 1-10 mapped to 0-1 with a 1.5 exponent so the middle of the roster stays friendly
+  // (largemouth ~0.1) while tarpon, sharks and legendaries (power 8-10) ramp up steeply (0.7-1.0).
+  function difficulty(power) { return ((power - 1) / 9) ** 1.25; }
+  const lerp = (a, b, d) => a + (b - a) * d;
+  const CALM_MESSAGE = "🎣 It's tiring! Reel and keep the tension in the green.";
+  const WARN_S = 0.55;            // WHY: just over typical human reaction time (~0.25s) plus finger travel, so a focused player can beat it but a distracted one can't
+  const FATIGUE_S = 30;           // WHY: fish tire; reeling gains grow +100% per 30s so no fight can stalemate forever, but the strongest still lose you the line well before that
   const SAVE_KEY = "samuel-fishing-v1";
 
   // ---------- state ----------
@@ -196,6 +207,7 @@
     pond.classList.toggle("bite", next === "bite");
     pond.classList.toggle("fighting", next === "fight");
     meters.hidden = next !== "fight";
+    if (next !== "fight") meters.classList.remove("warn");
     castBtn.disabled = next !== "idle";
     reelBtn.disabled = next === "idle";
     reelBtn.textContent = next === "fight" ? "🌀 HOLD to reel" : "🪝 Set the hook!";
@@ -234,17 +246,28 @@
     const [lo, hi] = fish.lb;
     // WHY: square the roll so big fish are rarer than small ones of the same species
     const lb = Math.round((lo + (hi - lo) * Math.random() ** 2) * 10) / 10;
+    const d = difficulty(fish.power);
+    // WHY: d**0.7 narrows the band earlier than the other difficulty knobs so mid-roster fish (power 6-8)
+    // already demand accuracy; play-testing showed a cliff between power 8 and 9 with a plain linear shrink
+    const bandD = d ** 0.7;
+    const low = lerp(SAFE_LOW_EASY, SAFE_LOW_HARD, bandD);
+    const high = lerp(SAFE_HIGH_EASY, SAFE_HIGH_HARD, bandD);
+    meters.style.setProperty("--safe-low", low + "%");
+    meters.style.setProperty("--safe-high", high + "%");
     fight = {
-      fish, lb,
-      tension: 45,
-      progress: 15,
+      fish, lb, d, low, high,
+      slackLimit: lerp(SLACK_LIMIT_EASY_S, SLACK_LIMIT_HARD_S, d),
+      tension: (low + high) / 2,
+      progress: 25,
       slack: 0,
       surge: 0,      // seconds left in a fish run
       jump: 0,       // seconds left in a jump
-      nextEvent: 1 + Math.random() * 1.5,
+      nextEvent: 1.5 + Math.random(), // WHY: a beat of calm after the hook-up so even a monster gives you time to get the tension in the band
+      pending: null,
+      age: 0,
       last: performance.now(),
     };
-    fishPower.textContent = fish.power >= 8 ? "🔥 MONSTER on the line!" : fish.power >= 5 ? "💪 Something strong..." : "🎣 Fish on!";
+    fishPower.textContent = fish.rarity === "legendary" ? "💀 LEGENDARY on the line!" : fish.power >= 8 ? "🔥 MONSTER on the line!" : fish.power >= 5 ? "💪 Something strong..." : "🎣 Fish on!";
     setPhase("fight");
     setMessage("Fish on! Hold Reel to bring it in. Keep the tension in the green.");
     requestAnimationFrame(tick);
@@ -256,42 +279,63 @@
     fight.last = now;
     const f = fight.fish;
     const pull = f.power / 10;
+    const d = fight.d;
 
     // random fish behavior: runs (pull drag) and jumps
     fight.nextEvent -= dt;
+    // WHY: every run/jump is announced WARN_S early. Reaction time alone (~250ms) can't dodge a hard fish;
+    // the warning turns it into a timing skill (ease off as it lands) instead of a coin flip.
+    if (!fight.pending && fight.nextEvent <= WARN_S) {
+      fight.pending = f.jumps && Math.random() < 0.45 + 0.35 * d ? "jump" : "run";
+      meters.classList.add("warn");
+      setMessage(fight.pending === "jump" ? `⚠️ The ${f.name} is about to JUMP! Get ready to let go!` : `⚠️ The ${f.name} is about to run! Ease off!`);
+    }
     if (fight.nextEvent <= 0) {
-      if (f.jumps && Math.random() < 0.45) {
-        fight.jump = 0.9;
+      meters.classList.remove("warn");
+      if (fight.pending === "jump") {
+        fight.jump = 0.9 + 0.5 * d;
         pond.classList.add("jumping");
         setMessage(`🐟 ${f.name.toUpperCase()} JUMPS! Let go of reel!`);
       } else {
-        fight.surge = 0.6 + pull * 1.2;
+        fight.surge = 0.6 + pull * 0.9;
         setMessage(`💨 It's running! Ease off or it'll snap!`);
       }
-      fight.nextEvent = 1.6 + Math.random() * (3.5 - pull * 1.5);
+      fight.pending = null;
+      // WHY: same rhythm for every fish; strength shows up as harder pulls, faster line loss and less room, not constant chaos
+      fight.nextEvent = 2.0 + Math.random() * 2.2;
     }
 
     let dTension = holding ? TENSION_UP_PER_S : -TENSION_DOWN_PER_S;
-    if (fight.surge > 0) { fight.surge -= dt; dTension += 35 * pull; fight.progress -= 8 * pull * dt; }
+    if (fight.surge > 0) {
+      fight.surge -= dt;
+      dTension += lerp(15, 44, d); // WHY: capped just above TENSION_DOWN_PER_S (40) so letting go nearly always holds the line; precision, not luck, decides it fight.progress -= 6 * pull * dt;
+      if (fight.surge <= 0) setMessage(CALM_MESSAGE);
+    }
     if (fight.jump > 0) {
       fight.jump -= dt;
+      fight.progress -= 6 * pull * dt; // WHY: an airborne fish takes line just like a run, so jumpers aren't a free pass
       // WHY: reeling during a jump is how real tarpon throw hooks / snap line, so it's punished hard
-      if (holding) dTension += 90;
-      if (fight.jump <= 0) pond.classList.remove("jumping");
+      if (holding) dTension += 50;
+      if (fight.jump <= 0) { pond.classList.remove("jumping"); setMessage(CALM_MESSAGE); }
     }
     fight.tension = Math.max(0, fight.tension + dTension * dt);
+    // WHY: during a jump the fish is airborne and slack is the correct response, so letting go must never be a trap:
+    // keep tension just under the band so one short pull gets you back in after it lands
+    if (fight.jump > 0) fight.tension = Math.max(fight.tension, fight.low - 8);
 
-    const inZone = fight.tension >= SAFE_LOW && fight.tension <= SAFE_HIGH;
-    if (holding && inZone) fight.progress += (REEL_PROGRESS_PER_S / (0.6 + pull * 0.8)) * dt;
-    if (!holding) fight.progress -= 3 * pull * dt; // fish slowly takes line back
-    fight.slack = fight.tension < SAFE_LOW ? fight.slack + dt : 0;
+    const inZone = fight.tension >= fight.low && fight.tension <= fight.high;
+    // strong fish also tire slower (+2.2 divisor at max difficulty) and take line back faster when you let off
+    fight.age += dt;
+    if (holding && inZone) fight.progress += (REEL_PROGRESS_PER_S / (0.6 + pull * 0.8 + 2.2 * d)) * (1 + fight.age / FATIGUE_S) * dt;
+    if (!holding) fight.progress -= (2.5 + 3 * d) * pull * dt;
+    fight.slack = fight.tension < fight.low && fight.jump <= 0 ? fight.slack + dt : 0;
 
     tensionFill.style.width = Math.min(100, fight.tension) + "%";
     tensionFill.classList.toggle("danger", !inZone);
     progressFill.style.width = Math.max(0, Math.min(100, fight.progress)) + "%";
 
-    if (fight.tension >= 100) return endFight(false, "💥 SNAP! The line broke. Too much pressure!");
-    if (fight.slack >= SLACK_LIMIT_S) return endFight(false, "🪝 Slack line! It shook the hook. Keep some tension on it.");
+    if (fight.tension >= 100) return endFight(false, `💥 SNAP! The ${f.name} was too strong and the line broke.`);
+    if (fight.slack >= fight.slackLimit) return endFight(false, `🪝 Slack line! The ${f.name} shook the hook. Keep some tension on it.`);
     if (fight.progress <= 0) return endFight(false, `🌊 It took all your line and got away. The ${f.name} wins this round.`);
     if (fight.progress >= 100) return endFight(true);
     requestAnimationFrame(tick);
