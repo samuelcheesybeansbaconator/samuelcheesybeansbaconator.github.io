@@ -55,7 +55,7 @@
         { id: "blacktip",   name: "Blacktip Shark",      emoji: "🦈", rarity: "uncommon",  lb: [30, 120],   power: 7, weight: 18 },
         { id: "sailfish",   name: "Sailfish",            emoji: "🐟", rarity: "epic",      lb: [40, 100],   power: 8, weight: 16, jumps: true },
         { id: "goliath",    name: "Goliath Grouper",     emoji: "🐡", rarity: "legendary", lb: [150, 500],  power: 9, weight: 12 },
-        { id: "hammerhead", name: "Great Hammerhead",    emoji: "🦈", rarity: "legendary", lb: [200, 600],  power: 9, weight: 10 },
+        { id: "hammerhead", name: "Great Hammerhead",    emoji: "🦈", rarity: "legendary", lb: [200, 600],  power: 10, weight: 10 },
       ],
     },
   };
@@ -80,9 +80,9 @@
   const HOOKSET_WINDOW_MS = 2000;
   // WHY: the safe tension band; below it the fish shakes loose, above it the line snaps.
   // Weak fish get the wide 25-80 band so a new player learns by feel within a few casts;
-  // the strongest fish shrink it toward 37-63 so only precise timing lands them.
+  // the strongest fish shrink it toward 39-61 so only precise timing lands them.
   const SAFE_LOW_EASY = 25, SAFE_HIGH_EASY = 80;
-  const SAFE_LOW_HARD = 37, SAFE_HIGH_HARD = 63;
+  const SAFE_LOW_HARD = 39, SAFE_HIGH_HARD = 61;
   const TENSION_UP_PER_S = 55;    // holding Reel raises tension about one safe band per second
   const TENSION_DOWN_PER_S = 40;  // letting go relaxes slightly slower than reeling, so taps feel smooth
   const REEL_PROGRESS_PER_S = 32; // play-tested: small fish land in ~5-7s, monsters in ~20s
@@ -249,7 +249,7 @@
     const d = difficulty(fish.power);
     // WHY: d**0.7 narrows the band earlier than the other difficulty knobs so mid-roster fish (power 6-8)
     // already demand accuracy; play-testing showed a cliff between power 8 and 9 with a plain linear shrink
-    const bandD = d ** 0.7;
+    const bandD = d ** 0.5;
     const low = lerp(SAFE_LOW_EASY, SAFE_LOW_HARD, bandD);
     const high = lerp(SAFE_HIGH_EASY, SAFE_HIGH_HARD, bandD);
     meters.style.setProperty("--safe-low", low + "%");
